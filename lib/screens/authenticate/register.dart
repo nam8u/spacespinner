@@ -12,18 +12,23 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
   String email = '';
   String password = '';
-  String name='';
-  String location ='';
-  String job='';
-  final List<String> locations = ['Kollam','Trivandrum','Bangalore','Coimbatore'];
+  String name = '';
+  String location = '';
+  String job = '';
 
-  String error='';
+  static List<String> locations = [
+    'Kollam',
+    'Trivandrum',
+    'Bangalore',
+    'Coimbatore'
+  ];
+
+  String error = '';
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
@@ -65,8 +70,7 @@ class _RegisterState extends State<Register> {
                 }),
                 SizedBox(height: 20.0),
                 DropdownButtonFormField(
-                  value: locations.first,
-                  decoration: textInputDecoration,
+                  decoration: textInputDecoration.copyWith(hintText: 'Select Location'),
                   items: locations.map((loc) {
                     return DropdownMenuItem(
                       value: loc,
@@ -132,7 +136,8 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-          )),
+          )
+    )
     );
   }
 }

@@ -10,12 +10,11 @@ class SStitle extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
-        margin: EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 0.0),
         child: ListTile(
           leading:  FlatButton.icon(
               onPressed: () {
               },
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person,color: Colors.deepOrangeAccent,),
               label: Text(
                 ss.name,
                 style: TextStyle(color: Colors.white),

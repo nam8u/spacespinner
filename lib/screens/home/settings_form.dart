@@ -32,7 +32,10 @@ class _SettingsFormState extends State<SettingsForm> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                Text('Update Info.'),
+
+                SizedBox(height: 10.0),
+                Text('Update your details.',style: TextStyle(color: Colors.teal,fontSize: 20.0),),
+
                 SizedBox(height: 20.0),
                 TextFormField(
                   initialValue: userData.name,

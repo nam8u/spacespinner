@@ -28,13 +28,13 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.teal[400],
         elevation: 0.0,
-        title: Text('Sign in'),
+        title: Text('Sign In'),
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () {
                 widget.toggleView();
               },
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person,color: Colors.white),
               label: Text(
                 'Sign up',
                 style: TextStyle(color: Colors.white),
@@ -45,7 +45,7 @@ class _SignInState extends State<SignIn> {
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
           child: Form(
             key: _formKey,
-            child: Column(
+            child: ListView(
               children: <Widget>[
                 SizedBox(height: 20.0),
                 TextFormField(

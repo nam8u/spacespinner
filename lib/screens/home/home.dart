@@ -32,20 +32,23 @@ class Home extends StatelessWidget {
             elevation: 0.0,
             actions: <Widget>[
               FlatButton.icon(
-                icon: Icon(Icons.person),
-                label: Text('logout'),
+                icon: Icon(Icons.exit_to_app,color: Colors.white),
+                label: Text('Logout',
+                  style: TextStyle(color: Colors.white),),
                 onPressed: () async {
                   await _auth.signOut();
                 },
               ),
               FlatButton.icon(
                 onPressed: () => _showSettingPanel(),
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.settings,color: Colors.white),
                 label:Text(''),
               ),
 
+
+
             ],
-            title: Text('Spacespinner'),
+            title: Text('Space Spinner'),
           ),
           body: SSList(
 
