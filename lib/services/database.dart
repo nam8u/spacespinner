@@ -24,9 +24,9 @@ import 'package:spacespinner/screens/home/ss_list.dart';
       List<SS> _SSListFromSnapshot (QuerySnapshot snapshot) {
         return snapshot.documents.map((doc) {
           return SS(
-            name: doc.data['name'] ?? '',
-            job: doc.data['job'] ?? '',
-            location: doc.data['location'] ?? '',
+            name: doc.data['name'] ?? 'NA',
+            job: doc.data['job'] ?? 'NA',
+            location: doc.data['location'] ?? 'NA',
           );
         }).toList();
       }

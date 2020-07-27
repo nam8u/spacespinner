@@ -12,7 +12,7 @@ class SSList extends StatefulWidget {
 class _SSListState extends State<SSList> {
   @override
   Widget build(BuildContext context) {
-    final ss = Provider.of<List<SS>>(context);
+    final ss = Provider.of<List<SS>>(context) ?? [];
 
     ss.forEach((ss) {
       print(ss.name);
