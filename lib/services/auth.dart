@@ -62,6 +62,18 @@ import 'package:spacespinner/services/database.dart';
         }
       }
 
+      Future forgotEmailPassword(String email) async {
+        try{
+          print(email);
+          await _auth.sendPasswordResetEmail(email: email);
+          return true;
+        }
+        catch(e)
+        {
+          return false;
+        }
+      }
+
     Future signOut() async {
         try {
           return await _auth.signOut();

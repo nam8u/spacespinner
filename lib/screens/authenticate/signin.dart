@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spacespinner/screens/authenticate/forgotpassword.dart';
 import 'package:spacespinner/screens/authenticate/register.dart';
 import 'package:spacespinner/services/auth.dart';
 import 'package:spacespinner/shared/constants.dart';
@@ -23,6 +24,16 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+
+    void _showForgotPanel()
+    {
+      showModalBottomSheet(context: context, builder: (context){
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 60.0),
+          child: ForgotForm(),
+        );
+      });
+    }
     return loading ? Loading() : Scaffold(
       backgroundColor: Colors.teal[00],
       appBar: AppBar(
@@ -91,6 +102,15 @@ class _SignInState extends State<SignIn> {
                   },
                 ),
                 SizedBox(height: 20.0),
+                FlatButton.icon(
+                    onPressed: () {
+                    _showForgotPanel();
+                    },
+                    icon: Icon(Icons.error,color: Colors.red,size: 20.0,),
+                    label: Text(
+                      'Forgot Password ?',
+                      style: TextStyle(color: Colors.pink),
+                    )),
                 Text(
                   error,
                   style: TextStyle(color: Colors.red, fontSize: 14.0),
