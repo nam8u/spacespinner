@@ -6,7 +6,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    color: Colors.teal[100],
+   
       child : SpinKitChasingDots(
         color: Colors.teal,
         size: 50.0,

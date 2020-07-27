@@ -16,13 +16,18 @@ class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-
   String email = '';
   String password = '';
+  String name='';
+  String location ='';
+  String job='';
+  final List<String> locations = ['Kollam','Trivandrum','Bangalore','Coimbatore'];
+
   String error='';
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.teal[00],
       appBar: AppBar(
         backgroundColor: Colors.teal[400],
@@ -41,20 +46,53 @@ class _RegisterState extends State<Register> {
         ],
       ),
       body: Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+          //padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+         // padding: EdgeInsets.only(
+              //bottom: MediaQuery.of(context).viewInsets.bottom),
+
           child: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: textInputDecoration.copyWith(hintText: 'Email'),
-                  validator: (val)=> val.isEmpty ? 'Enter Email' : null,
+                  decoration: textInputDecoration.copyWith(hintText: 'Name'),
+                  validator: (val)=> val.isEmpty ? 'Enter Name' : null,
                     onChanged: (val) {
                   setState(() {
-                    email = val;
+                    name = val;
                   });
                 }),
+                SizedBox(height: 20.0),
+                DropdownButtonFormField(
+                  value: locations.first,
+                  decoration: textInputDecoration,
+                  items: locations.map((loc) {
+                    return DropdownMenuItem(
+                      value: loc,
+                      child: Text('$loc'),
+                    );
+                  }).toList(),
+                  onChanged: (val) => setState(() => location = val),
+                ),
+                SizedBox(height: 20.0),
+                TextFormField(
+                    decoration: textInputDecoration.copyWith(hintText: 'Job'),
+                    validator: (val)=> val.isEmpty ? 'Enter Job' : null,
+                    onChanged: (val) {
+                      setState(() {
+                        job = val;
+                      });
+                    }),
+                SizedBox(height: 20.0),
+                TextFormField(
+                    decoration: textInputDecoration.copyWith(hintText: 'Email'),
+                    validator: (val)=> val.isEmpty ? 'Enter Email' : null,
+                    onChanged: (val) {
+                      setState(() {
+                        email = val;
+                      });
+                    }),
                 SizedBox(height: 20.0),
                 TextFormField(
                     decoration: textInputDecoration.copyWith(hintText: 'Password'),
@@ -76,12 +114,12 @@ class _RegisterState extends State<Register> {
                    if(_formKey.currentState.validate())
                      {
                        setState(() => loading = true);
-                       dynamic result = await _auth.registerWithEmail(email, password);
+                       dynamic result = await _auth.registerWithEmail(email, password, name,job,location);
                        if(result == null)
                          {
                            setState(() {
                              loading = false;
-                             error = 'please supply a valid email';
+                             error = 'please check the form.';
                            });
                          }
                      }

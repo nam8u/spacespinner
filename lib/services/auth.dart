@@ -35,11 +35,11 @@ import 'package:spacespinner/services/database.dart';
     }
 
 
-      Future registerWithEmail(String email, String password) async {
+      Future registerWithEmail(String email, String password, String name, String job, String location) async {
         try{
           AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
           FirebaseUser user = result.user;
-          await DatabaseService(uid:user.uid).updateUserData('', '', '');
+          await DatabaseService(uid:user.uid).updateUserData(name, job, location);
           return _userFromFirebaseUser(user);
         }
         catch(e)

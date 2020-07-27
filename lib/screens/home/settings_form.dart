@@ -16,13 +16,14 @@ class _SettingsFormState extends State<SettingsForm> {
   String _currentName;
   String _currentJob;
   String _currentLocation;
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
 
     final user = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
+    return loading ? Loading() : StreamBuilder<UserData>(
       stream: DatabaseService(uid: user.uid).userData,
       builder:(context,snapshot){
         if(snapshot.hasData) {
@@ -71,12 +72,14 @@ class _SettingsFormState extends State<SettingsForm> {
                   ),
                   onPressed: () async {
                     if(_formKey.currentState.validate())
-                      {
+                      {setState(() => loading = true);
                         await DatabaseService(uid: user.uid).updateUserData(
                             _currentName ?? userData.name,
                             _currentJob ?? userData.job,
                             _currentLocation ?? userData.location,
+
                         );
+                      setState(() => loading = false);
                       }
 
                   },

@@ -30,7 +30,6 @@ import 'package:spacespinner/screens/home/ss_list.dart';
           );
         }).toList();
       }
-
       //User Data from Snapshots.
 
       UserData _userDataFromSnapshot(DocumentSnapshot snapshot)
