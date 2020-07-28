@@ -15,13 +15,6 @@ class _SSListState extends State<SSList> {
   @override
   Widget build(BuildContext context) {
     final ss = Provider.of<List<SS>>(context) ?? [];
-
-    ss.forEach((ss) {
-      print(ss.name);
-      print(ss.job);
-      print(ss.location);
-    });
-
     if (_auth.verifyUser() != null) {
       return ListView.builder(
         itemCount: ss.length,
