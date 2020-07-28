@@ -49,9 +49,27 @@ import 'package:spacespinner/services/database.dart';
         }
       }
 
+      Future<String> getCurrentUID() async{
+        final FirebaseUser user = await _auth.currentUser();
+        final String uid = user.uid;
+        return uid;
+
+        if (user.isEmailVerified) return user.uid;
+        return null;
+      }
+
+      Future<String> verifyUser() async{
+        final FirebaseUser user = await _auth.currentUser();
+        if (user.isEmailVerified) {
+          return user.uid;
+        }
+        return null;
+      }
+
       Future signinWithEmail(String email, String password) async {
         try{
           AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+          await result.user.sendEmailVerification();
           FirebaseUser user = result.user;
           return _userFromFirebaseUser(user);
         }

@@ -16,7 +16,7 @@ class SStitle extends StatelessWidget {
               },
               icon: Icon(Icons.person,color: Colors.deepOrangeAccent,),
               label: Text(
-                ss.name,
+                '',
                 style: TextStyle(color: Colors.white),
               )),
           title: Text(ss.name),

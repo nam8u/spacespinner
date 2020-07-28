@@ -44,15 +44,10 @@ class Home extends StatelessWidget {
                 icon: Icon(Icons.settings,color: Colors.white),
                 label:Text(''),
               ),
-
-
-
             ],
             title: Text('Space Spinner'),
           ),
-          body: SSList(
-
-          ),
+          body: SSList(),
         ));
   }
 }
